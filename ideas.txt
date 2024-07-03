@@ -1,0 +1,5 @@
+TODO
+1. Decide which fields to keep in the happiness data
+2. Determine what were testing for
+    - How happiness relates to life expectancy and what factors contribute the most to national happiness?
+
