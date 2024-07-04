@@ -42,7 +42,7 @@ for column in columns_to_impute:
                 # print(f'R^2 score for {country} on {column}: {r2_score:.2f}')
                 total_preds += 1
 
-                if r2_score > 0.6:
+                if r2_score > 0.75:
                     X_pred = missing_data[['Year']].values.reshape(-1, 1)
                     y_pred = model.predict(X_pred)
                     merged_data_imputed.loc[missing_data.index, column] = y_pred
@@ -58,15 +58,14 @@ print(f"Total predictions: {total_preds}, Low R^2 scores: {lows}")
 
 # 20% of predictions have 60% accuracy score or higher for linear regression on the training data
 # 98% of predictions have 60% accuracy score or higher for random forests classifier on training data
-print(f'This model is at least 60% accurate on the training data {1 - (lows/total_preds)} of the time')
-
-unique_country_data_left_blank = set(country_data_left_blank)
+print(f'This model is at least 75% accurate on the training data {1 - (lows/total_preds)} of the time')
 
 df_country_data_left_blank = pd.DataFrame(country_data_left_blank, columns=['Country', 'Column'])
-df_country_data_left_blank = df_country_data_left_blank.pivot(index="Country", values="Column", columns='Column')
+df_country_data_left_blank['Present'] = np.where(df_country_data_left_blank['Column'].notna(), 'No Data', 'Data')
+df_country_data_left_blank = df_country_data_left_blank.pivot(index="Country", values="Present", columns='Column')
 df_country_data_left_blank = df_country_data_left_blank.sort_values(by="Country")
+df_country_data_left_blank = df_country_data_left_blank.replace(np.nan, "Data")
 
-print(df_country_data_left_blank)
 df_country_data_left_blank.to_csv("countries_with_missing_data.csv")
 
 merged_data_imputed.to_csv("merged_data_imputed.csv", index=False)

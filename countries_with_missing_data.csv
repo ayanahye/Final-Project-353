@@ -1,8 +1,10 @@
-Country,Generosity,Negative Affect,Perceptions Of Corruption,Positive Affect,Social Support
-China,,,Perceptions Of Corruption,,
-Cuba,Generosity,,Perceptions Of Corruption,,
-Maldives,,Negative Affect,Perceptions Of Corruption,Positive Affect,
-Oman,,,Perceptions Of Corruption,Positive Affect,Social Support
-Qatar,,,Perceptions Of Corruption,,
-South Sudan,Generosity,,,,
-Turkmenistan,,,Perceptions Of Corruption,,
+Country,Freedom To Make Life Choices,Generosity,Negative Affect,Perceptions Of Corruption,Positive Affect,Social Support
+Algeria,No Data,Data,Data,Data,Data,Data
+China,Data,Data,Data,No Data,Data,Data
+Cuba,Data,No Data,Data,No Data,Data,Data
+Djibouti,Data,Data,No Data,Data,Data,No Data
+Maldives,Data,Data,No Data,No Data,No Data,Data
+Oman,Data,Data,Data,No Data,No Data,No Data
+Qatar,Data,Data,Data,No Data,No Data,Data
+South Sudan,Data,No Data,Data,Data,Data,Data
+Turkmenistan,Data,Data,Data,No Data,Data,Data
