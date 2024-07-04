@@ -16,6 +16,7 @@ country_data_left_blank = []
 
 lows = 0
 total_preds = 0
+
 for column in columns_to_impute:
     for country, group in grouped:
         country_data = group[group[column].notna()]
@@ -24,11 +25,10 @@ for column in columns_to_impute:
         count_points = country_data[column].count()
         # if the data for that country is not empty and if there are some missing data fields then
         if (not country_data.empty and (not missing_data.empty)):
-            
             if column == 'Perceptions Of Corruption' and count_points > 2:
                 mean_value = country_data[column].mean()
                 merged_data_imputed.loc[missing_data.index, column] = mean_value
-                print(f'Mean for {country} on {column} with count {count_points}: {mean_value:.2f}')
+                # print(f'Mean for {country} on {column} with count {count_points}: {mean_value:.2f}')
             elif count_points <= 2:
                 country_data_left_blank.append((country, column))
             else:
@@ -39,7 +39,7 @@ for column in columns_to_impute:
                 model.fit(X_train, y_train)
 
                 r2_score = model.score(X_train, y_train)
-                print(f'R^2 score for {country} on {column}: {r2_score:.2f}')
+                # print(f'R^2 score for {country} on {column}: {r2_score:.2f}')
                 total_preds += 1
 
                 if r2_score > 0.6:
@@ -58,9 +58,15 @@ print(f"Total predictions: {total_preds}, Low R^2 scores: {lows}")
 
 # 20% of predictions have 60% accuracy score or higher for linear regression on the training data
 # 98% of predictions have 60% accuracy score or higher for random forests classifier on training data
-print(1 - (lows/total_preds))
+print(f'This model is at least 60% accurate on the training data {1 - (lows/total_preds)} of the time')
 
 unique_country_data_left_blank = set(country_data_left_blank)
-print(f"Country data left blank: {unique_country_data_left_blank}")
+
+df_country_data_left_blank = pd.DataFrame(country_data_left_blank, columns=['Country', 'Column'])
+df_country_data_left_blank = df_country_data_left_blank.pivot(index="Country", values="Column", columns='Column')
+df_country_data_left_blank = df_country_data_left_blank.sort_values(by="Country")
+
+print(df_country_data_left_blank)
+df_country_data_left_blank.to_csv("countries_with_missing_data.csv")
 
 merged_data_imputed.to_csv("merged_data_imputed.csv", index=False)
