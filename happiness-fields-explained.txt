@@ -62,4 +62,3 @@ on the data extracted from the World Health Organization’s (WHO) Global
 Health Observatory data repository (Last updated: 2020-12-04).
     - The data at the source are available for the years 2000, 2010, 2015 and 2019. To match this
 report’s sample period, interpolation and extrapolation are used.
-

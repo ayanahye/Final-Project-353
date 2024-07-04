@@ -1,0 +1,21 @@
+Due Date: August 02 2024
+
+Meetings Monday
+
+July 8th
+    - Due Date: Next week monday
+    - Data Cleaning (ML model for finding missing values) (Ayana)
+    - Data Visualizations (Poorvi)
+
+July 15th
+    - Stats tests
+
+July 22nd
+    - Final Machine Learning tasks
+
+July 29th
+    - Finish Report 
+
+August 2nd
+    - Review + finalize everything
+
