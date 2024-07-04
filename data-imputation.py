@@ -4,7 +4,15 @@ from sklearn.ensemble import RandomForestRegressor
 
 merged_data = pd.read_csv("merged_data.csv", na_values='')
 
-columns_to_impute = ['Social Support', 'Freedom To Make Life Choices', 'Generosity', 'Perceptions Of Corruption', 'Positive Affect', 'Negative Affect']
+all_countries = merged_data['Country Name'].unique()
+all_years = np.arange(2006, 2023)
+
+complete_data = pd.DataFrame([(country, year) for country in all_countries for year in all_years],
+                             columns=['Country Name', 'Year'])
+
+# merge data so that all countries have rows from 2006-2022
+merged_data = complete_data.merge(merged_data, on=['Country Name', 'Year'], how='left')
+columns_to_impute = ['Life Expectancy At Birth', 'Life Ladder', 'Social Support', 'Freedom To Make Life Choices', 'Generosity', 'Perceptions Of Corruption', 'Positive Affect', 'Negative Affect']
 
 grouped = merged_data.groupby('Country Name')
 
@@ -27,7 +35,7 @@ for column in columns_to_impute:
         if (not country_data.empty and (not missing_data.empty)):
             if column == 'Perceptions Of Corruption' and count_points > 2:
                 mean_value = country_data[column].mean()
-                merged_data_imputed.loc[missing_data.index, column] = mean_value
+                merged_data_imputed.loc[missing_data.index, column] = round(mean_value, 3)
                 # print(f'Mean for {country} on {column} with count {count_points}: {mean_value:.2f}')
             elif count_points <= 2:
                 country_data_left_blank.append((country, column))
@@ -45,12 +53,15 @@ for column in columns_to_impute:
                 if r2_score > 0.75:
                     X_pred = missing_data[['Year']].values.reshape(-1, 1)
                     y_pred = model.predict(X_pred)
-                    merged_data_imputed.loc[missing_data.index, column] = y_pred
+                    merged_data_imputed.loc[missing_data.index, column] = y_pred.round(3)
                 else:
                     lows += 1
-                    print(f'Low R^2 score for {country} on {column}, keeping NaN values')
+                    print(f'Low R^2 score for {country} on {column}, imputing with mean value')
                     country_data_left_blank.append((country, column))
-
+                    
+                    # impute remaining missing values with the mean of the column
+                    mean_value = country_data[column].mean()
+                    merged_data_imputed.loc[missing_data.index, column] = round(mean_value, 3)
         elif country_data.empty:
             country_data_left_blank.append((country, column))
 
@@ -67,5 +78,13 @@ df_country_data_left_blank = df_country_data_left_blank.sort_values(by="Country"
 df_country_data_left_blank = df_country_data_left_blank.replace(np.nan, "Data")
 
 df_country_data_left_blank.to_csv("countries_with_missing_data.csv")
+
+# remove countries with minimal to no data
+merged_data_imputed = merged_data_imputed[merged_data_imputed['Country Name'] != 'Cuba']
+merged_data_imputed = merged_data_imputed[merged_data_imputed['Country Name'] != 'Guyana']
+merged_data_imputed = merged_data_imputed[merged_data_imputed['Country Name'] != 'Maldives']
+merged_data_imputed = merged_data_imputed[merged_data_imputed['Country Name'] != 'Oman']
+merged_data_imputed = merged_data_imputed[merged_data_imputed['Country Name'] != 'Suriname']
+merged_data_imputed = merged_data_imputed[merged_data_imputed['Country Name'] != 'Belize']
 
 merged_data_imputed.to_csv("merged_data_imputed.csv", index=False)

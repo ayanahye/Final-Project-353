@@ -1,3 +1,6 @@
 TODO
 1. Determine what were testing for
     - How happiness relates to life expectancy and what factors contribute the most to national happiness?
+
+Ideas after first meeting: 
+Use machine learning to add some missing values, do some stats test on the data, then do some machine learning tasks. Ideas for ML tasks: given an year, predict happiness levels and life expectancy for future years, analyze which factors contribute the most to either prediction of life expectancy or happiness 
