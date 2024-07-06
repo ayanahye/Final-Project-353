@@ -1,0 +1,12 @@
+Data Imputation 
+    1. After imputing and predicting values using linear regression, I noticed some parts of the column for corruption of government are still blank
+        - Notably, there is not data on how corrupt people think the government is for these countries:
+            >> China
+            >> Cuba
+            >> Maldives
+            >> Oman
+            >> Turkmenistan
+
+More Rank Data
+    1. There is a future problem that the behavior of Series.idxmin or Series.idxmax with all NA values will be deprecated and in future versions will raise a ValueError.
+        - Because some countries are missing all their data in one feature the whole feature data is null which is a problem. One solution is to pass .idxmax(skipna=True) however this will not allow us to put a NaN value for that year which is needed.

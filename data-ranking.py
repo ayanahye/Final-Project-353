@@ -15,5 +15,6 @@ for feature, top_values in top_50_rank.items():
     print(top_values[['Country Name', 'Year', feature]])
     print('\n')
 
-    filename = f'ranks/top_50_for_{feature.replace(" ", "_").lower()}.csv'
+    filename = f'ranks_overall/top_50_for_{feature.replace(" ", "_").lower()}.csv'
     top_values[["Country Name", "Year", feature.title()]].to_csv(filename, index=False)
+

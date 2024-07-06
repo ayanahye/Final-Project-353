@@ -1,8 +1,0 @@
-Data Imputation 
-    1. After imputing and predicting values using linear regression, I noticed some parts of the column for corruption of government are still blank
-        - Notably, there is not data on how corrupt people think the government is for these countries:
-            >> China
-            >> Cuba
-            >> Maldives
-            >> Oman
-            >> Turkmenistan
