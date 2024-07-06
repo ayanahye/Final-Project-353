@@ -51,37 +51,83 @@ def plot_2_countries(country_1, country_2, feature_name):
     plt.tight_layout()
     plt.savefig(f'visualizations/{country_1}-vs-{country_2}.png')
 
-# Visualize the top 50 countries based on each feature
-folder = 'ranks_high_overall'
+# Visualize the top 50 countries based on each feature (Bar Graphs)
+folder = 'ranks/ranks_high_overall'
 from os import listdir
 from os.path import join, isfile
-
 path = folder
 for i, filename in enumerate(listdir(path)):
     full_filename = join(path, filename) # get file name joint with the path
     data = pd.read_csv(full_filename) # get data for that file
     feature = data.columns[1]
     plt.figure(figsize=(10, 6)) # plot a bar graph
-    plt.title(f'Top 50 countries based on {feature}')
+    plt.title(f'Top 50 Countries Based on {feature}')
     plt.xlabel('Country')
     plt.ylabel(f'{feature.title()} Score')
     plt.xticks(rotation=90)
     plt.bar(data['Country Name'], data[feature])
     plt.tight_layout()
-    plt.savefig(f'high_ranks_visualizations/top_50_{feature.replace(" ", "_").lower()}_data.png')
+    plt.savefig(f'visualizations/high_ranks_visualizations/top_50_{feature.replace(" ", "_").lower()}_data.png')
+    plt.close()
 
-# Visualize the bottom 50 countries based on each feature
-folder = 'ranks_low_overall'
+# Visualize the bottom 50 countries based on each feature (Bar Graphs)
+folder = 'ranks/ranks_low_overall'
 path = folder
 for i, filename in enumerate(listdir(path)):
     full_filename = join(path, filename)
     data = pd.read_csv(full_filename)
     feature = data.columns[1]
     plt.figure(figsize=(10, 6))
-    plt.title(f'Bottom 50 countries based on {feature}')
+    plt.title(f'Bottom 50 Countries Based on {feature}')
     plt.xlabel('Country')
     plt.ylabel(f'{feature.title()} Score')
     plt.xticks(rotation=90)
     plt.bar(data['Country Name'], data[feature])
     plt.tight_layout()
-    plt.savefig(f'low_ranks_visualizations/bottom_50_{feature.replace(" ", "_").lower()}_data.png')
+    plt.savefig(f'visualizations/low_ranks_visualizations/bottom_50_{feature.replace(" ", "_").lower()}_data.png')
+    plt.close()
+
+# Scatter Plots of top 50 all time high scores for each feature
+folder = 'ranks/ranks_high_overall_including_years'
+path = folder
+for i, filename in enumerate(listdir(path)):
+    full_filename = join(path, filename)
+    data = pd.read_csv(full_filename)
+    feature = data.columns[2]
+
+    plt.figure(figsize=(10, 6))
+    plt.title(f'Top 50 All Time Scores Based on {feature}')
+    plt.xlabel(f'{feature.title()} Score')
+    plt.ylabel('Year')
+    plt.scatter(data[feature], data['Year'])
+
+    # on top of each data point in the scatter plot, mention which country it is from
+    for j in range(len(data)):
+        plt.text(data[feature][j], data['Year'][j], data['Country Name'][j], 
+                 fontsize=4.5, ha='right', va='bottom', rotation=15)
+    plt.tight_layout()
+    plt.savefig(f'visualizations/all_time_top_50_ranks/all_time_top_50_{feature.replace(" ", "_").lower()}.png')
+    plt.close()
+
+# Scatter Plots of bottom 50 all time low scores for each feature
+folder = 'ranks/ranks_low_overall_including_years'
+path = folder
+for i, filename in enumerate(listdir(path)):
+    full_filename = join(path, filename)
+    data = pd.read_csv(full_filename)
+    feature = data.columns[2]
+
+    plt.figure(figsize=(10, 6))
+    plt.title(f'Bottom 50 All Time Scores Based on {feature}')
+    plt.xlabel(f'{feature.title()} Score')
+    plt.ylabel('Year')
+    plt.scatter(data[feature], data['Year'])
+
+    # on top of each data point in the scatter plot, mention which country it is from
+    for j in range(len(data)):
+        plt.text(data[feature][j], data['Year'][j], data['Country Name'][j], 
+                 fontsize=4.5, ha='right', va='bottom', rotation=15)
+    plt.tight_layout()
+    plt.savefig(f'visualizations/all_time_bottom_50_ranks/all_time_bottom_50_{feature.replace(" ", "_").lower()}.png')
+    plt.close()
+
