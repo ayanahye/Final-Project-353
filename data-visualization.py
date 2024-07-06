@@ -58,10 +58,10 @@ from os.path import join, isfile
 
 path = folder
 for i, filename in enumerate(listdir(path)):
-    full_filename = join(path, filename)
-    data = pd.read_csv(full_filename)
+    full_filename = join(path, filename) # get file name joint with the path
+    data = pd.read_csv(full_filename) # get data for that file
     feature = data.columns[1]
-    plt.figure(figsize=(10, 6))
+    plt.figure(figsize=(10, 6)) # plot a bar graph
     plt.title(f'Top 50 countries based on {feature}')
     plt.xlabel('Country')
     plt.ylabel(f'{feature.title()} Score')
@@ -69,3 +69,19 @@ for i, filename in enumerate(listdir(path)):
     plt.bar(data['Country Name'], data[feature])
     plt.tight_layout()
     plt.savefig(f'high_ranks_visualizations/top_50_{feature.replace(" ", "_").lower()}_data.png')
+
+# Visualize the bottom 50 countries based on each feature
+folder = 'ranks_low_overall'
+path = folder
+for i, filename in enumerate(listdir(path)):
+    full_filename = join(path, filename)
+    data = pd.read_csv(full_filename)
+    feature = data.columns[1]
+    plt.figure(figsize=(10, 6))
+    plt.title(f'Bottom 50 countries based on {feature}')
+    plt.xlabel('Country')
+    plt.ylabel(f'{feature.title()} Score')
+    plt.xticks(rotation=90)
+    plt.bar(data['Country Name'], data[feature])
+    plt.tight_layout()
+    plt.savefig(f'low_ranks_visualizations/bottom_50_{feature.replace(" ", "_").lower()}_data.png')
