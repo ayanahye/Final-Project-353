@@ -51,4 +51,21 @@ def plot_2_countries(country_1, country_2, feature_name):
     plt.tight_layout()
     plt.savefig(f'visualizations/{country_1}-vs-{country_2}.png')
 
-plot_country_features('Germany')
+# Visualize the top 50 countries based on each feature
+folder = 'ranks_high_overall'
+from os import listdir
+from os.path import join, isfile
+
+path = folder
+for i, filename in enumerate(listdir(path)):
+    full_filename = join(path, filename)
+    data = pd.read_csv(full_filename)
+    feature = data.columns[1]
+    plt.figure(figsize=(10, 6))
+    plt.title(f'Top 50 countries based on {feature}')
+    plt.xlabel('Country')
+    plt.ylabel(f'{feature.title()} Score')
+    plt.xticks(rotation=90)
+    plt.bar(data['Country Name'], data[feature])
+    plt.tight_layout()
+    plt.savefig(f'high_ranks_visualizations/top_50_{feature.replace(" ", "_").lower()}_data.png')
