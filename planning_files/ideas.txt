@@ -1,6 +1,14 @@
 TODO
-1. Determine what were testing for
+1. Determine what we're testing for
     - How happiness relates to life expectancy and what factors contribute the most to national happiness?
+    - + Some additional relationships between factors
 
 Ideas after first meeting: 
-Use machine learning to add some missing values, do some stats test on the data, then do some machine learning tasks. Ideas for ML tasks: given an year, predict happiness levels and life expectancy for future years, analyze which factors contribute the most to either prediction of life expectancy or happiness 
+Use machine learning to add some missing values, do some stats tests on the data, then do some machine learning tasks. Ideas for ML tasks: given an year, predict happiness levels and life expectancy for future years, analyze which factors contribute the most to either prediction of life expectancy or happiness 
+
+Ideas for stats tests: 
+- Do a correlation analysis to see if there is a relationship between happiness scores and life expectancy at birth across countries and over time.
+- Perform a regression test to analyze the impact of generosity on happiness scores. This can provide insights into whether generous societies tend to have higher happiness levels.
+- Use a regression test to examine if positive affect is associated with higher life expectancy in different countries.
+- Categorize happiness scores (low, moderate, high) and perceptions of corruption (low, moderate, high) and use a chi-square test to examine if there is a significant association between these two variables.
+- Categorize countries by geographic regions (example: Europe, Asia, Australia) and use a chi-square test to examine if there are significant differences in the distribution of freedom to make life choices (high, moderate, low) across these regions. (Might be a bit hard to categorize countries, maybe some mapping scheme??)
