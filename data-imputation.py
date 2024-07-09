@@ -3,6 +3,7 @@ import numpy as np
 from sklearn.ensemble import RandomForestRegressor
 
 merged_data = pd.read_csv("merged_data.csv", na_values='')
+continent_data = pd.read_csv("countries_by_continents.csv")
 
 all_countries = merged_data['Country Name'].unique()
 all_years = np.arange(2006, 2023)
@@ -10,8 +11,12 @@ all_years = np.arange(2006, 2023)
 complete_data = pd.DataFrame([(country, year) for country in all_countries for year in all_years],
                              columns=['Country Name', 'Year'])
 
+
 # merge data so that all countries have rows from 2006-2022
 merged_data = complete_data.merge(merged_data, on=['Country Name', 'Year'], how='left')
+
+merged_data = pd.merge(merged_data, continent_data, on='Country Name')
+
 columns_to_impute = ['Life Expectancy At Birth', 'Life Ladder', 'Social Support', 'Freedom To Make Life Choices', 'Generosity', 'Perceptions Of Corruption', 'Positive Affect', 'Negative Affect']
 
 grouped = merged_data.groupby('Country Name')
@@ -67,8 +72,6 @@ for column in columns_to_impute:
 
 print(f"Total predictions: {total_preds}, Low R^2 scores: {lows}")
 
-# 20% of predictions have 60% accuracy score or higher for linear regression on the training data
-# 98% of predictions have 60% accuracy score or higher for random forests classifier on training data
 print(f'This model is at least 75% accurate on the training data {1 - (lows/total_preds)} of the time')
 
 df_country_data_left_blank = pd.DataFrame(country_data_left_blank, columns=['Country', 'Column'])

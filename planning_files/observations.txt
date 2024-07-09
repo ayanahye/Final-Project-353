@@ -10,3 +10,10 @@ Data Imputation
 More Rank Data
     1. There is a future problem that the behavior of Series.idxmin or Series.idxmax with all NA values will be deprecated and in future versions will raise a ValueError.
         - Because some countries are missing all their data in one feature the whole feature data is null which is a problem. One solution is to pass .idxmax(skipna=True) however this will not allow us to put a NaN value for that year which is needed.
+
+Changes in continents data:
+    - Burkina -> Burkina Faso
+    - Added Eswatini 
+    - Changed Burma -> Myanmar
+    - Added North Macedonia
+    - Change column name country to country name

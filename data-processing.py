@@ -20,6 +20,7 @@ life_expectancy_data = life_expectancy_data[life_expectancy_data["year"] >= 2005
 life_expectancy_data.to_csv("cleaned_data/life_cleaned.csv")
 
 merged_data = pd.merge(life_expectancy_data, grouped_happiness_data, left_on=['Country Name', 'year'], right_on=['Country name', 'year'])
+
 merged_data = merged_data.drop_duplicates()
 merged_data = merged_data.sort_values(by=['Country Name', 'year']).reset_index(drop=True)
 
@@ -29,3 +30,4 @@ merged_data.columns = [column.title() for column in merged_data.columns]
 print(merged_data)
 merged_data.to_csv("merged_data.csv", index=False)
 print("Finished data processing step!")
+# 1947

@@ -2,8 +2,8 @@ Country Name,Year,Life Ladder
 Afghanistan,2022,1.281
 Lebanon,2021,2.179
 Lebanon,2022,2.352
-Afghanistan,2020,2.364
 Afghanistan,2019,2.375
+Afghanistan,2020,2.389
 Afghanistan,2021,2.436
 Sierra Leone,2022,2.56
 Lebanon,2020,2.634
@@ -15,26 +15,29 @@ Liberia,2015,2.702
 Togo,2008,2.808
 South Sudan,2017,2.817
 Togo,2014,2.839
+Togo,2009,2.857
+South Sudan,2018,2.875
+South Sudan,2019,2.875
+South Sudan,2020,2.875
+South Sudan,2021,2.875
+South Sudan,2022,2.875
 South Sudan,2016,2.888
-Togo,2009,2.896
 Tanzania,2016,2.903
 Burundi,2014,2.905
-South Sudan,2018,2.906
-South Sudan,2019,2.906
-South Sudan,2020,2.906
-South Sudan,2021,2.906
-South Sudan,2022,2.906
-Togo,2013,2.934
+Togo,2010,2.91
+Central African Republic,2015,2.924
 Togo,2011,2.936
-Togo,2010,2.94
-Togo,2012,2.962
-Central African Republic,2015,2.973
+Central African Republic,2014,2.959
 Sierra Leone,2008,2.997
-Central African Republic,2014,3.0
-Togo,2007,3.075
+Togo,2012,3.0
+Togo,2013,3.001
 Zambia,2021,3.082
+Togo,2007,3.087
 Rwanda,2017,3.108
+Burundi,2013,3.123
 Afghanistan,2014,3.131
+Burundi,2015,3.136
+Burundi,2016,3.136
 Zimbabwe,2021,3.155
 Zimbabwe,2020,3.16
 Zimbabwe,2008,3.174
@@ -43,9 +46,6 @@ Benin,2012,3.193
 Togo,2006,3.202
 Tanzania,2010,3.229
 India,2019,3.249
-Rwanda,2019,3.268
-Zimbabwe,2007,3.28
-Lesotho,2021,3.294
-Zimbabwe,2022,3.296
-Zambia,2019,3.307
-Rwanda,2020,3.313
+Central African Republic,2018,3.261
+Central African Republic,2019,3.261
+Central African Republic,2020,3.261

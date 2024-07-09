@@ -2,8 +2,8 @@ Country Name,Year,Positive Affect
 Afghanistan,2021,0.179
 Afghanistan,2022,0.206
 Lebanon,2021,0.263
+Afghanistan,2020,0.291
 Lebanon,2022,0.298
-Afghanistan,2020,0.299
 Lebanon,2019,0.308
 Afghanistan,2019,0.324
 Georgia,2007,0.351
@@ -31,12 +31,12 @@ Bangladesh,2019,0.433
 Afghanistan,2017,0.435
 Tunisia,2013,0.435
 Bangladesh,2017,0.436
+Togo,2009,0.436
 Armenia,2010,0.437
 Bangladesh,2016,0.437
 Chad,2013,0.437
-Afghanistan,2006,0.44
-Afghanistan,2007,0.44
-Togo,2009,0.441
+Afghanistan,2006,0.438
+Afghanistan,2007,0.438
 Lebanon,2012,0.442
 Georgia,2012,0.443
 Nepal,2015,0.444

@@ -3,14 +3,20 @@ import numpy as np
 
 # get the data
 data = pd.read_csv('merged_data_imputed.csv')
-features = data.loc[:, (data.columns != 'Country Name') & (data.columns != 'Year')].columns
+countries_by_continents = pd.read_csv('countries_by_continents.csv')
+
+features = data.loc[:, (data.columns != 'Country Name') & (data.columns != 'Year') & (data.columns != 'Continent')].columns
 
 # create max values for each country
 data_max_grouped = data.groupby(['Country Name'])[features].max().reset_index()
+data_max_grouped = pd.merge(data_max_grouped, countries_by_continents, on='Country Name')
+
 data_max_grouped.to_csv("more_rank_data/maxes_each_country.csv", index=False)
 
 # create min values for each country
 data_min_grouped = data.groupby(['Country Name'])[features].min().reset_index()
+data_min_grouped = pd.merge(data_min_grouped, countries_by_continents, on='Country Name')
+
 data_min_grouped.to_csv("more_rank_data/mins_each_country.csv", index=False)
 
 # create year where max occurs for each country for each feature
@@ -31,6 +37,7 @@ for country in data['Country Name'].unique():
 
     data_max_grouped_with_years = pd.concat([data_max_grouped_with_years, pd.DataFrame([max_years])], ignore_index=True)
 
+data_max_grouped_with_years = pd.merge(data_max_grouped_with_years, countries_by_continents, on='Country Name')
 data_max_grouped_with_years.to_csv('more_rank_data/country_max_features_only_year.csv', index=False)
 
 # create year where min occurs for each country for each feature
@@ -51,5 +58,6 @@ for country in data['Country Name'].unique():
 
     data_min_grouped_with_years = pd.concat([data_min_grouped_with_years, pd.DataFrame([min_years])], ignore_index=True)
 
+data_min_grouped_with_years = pd.merge(data_min_grouped_with_years, countries_by_continents, on='Country Name')
 data_min_grouped_with_years.to_csv('more_rank_data/country_min_features_only_year.csv', index=False)
 
