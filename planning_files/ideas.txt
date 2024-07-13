@@ -12,3 +12,8 @@ Ideas for stats tests:
 - Use a regression test to examine if positive affect is associated with higher life expectancy in different countries.
 - Categorize happiness scores (low, moderate, high) and perceptions of corruption (low, moderate, high) and use a chi-square test to examine if there is a significant association between these two variables.
 - Categorize countries by geographic regions (example: Europe, Asia, Australia) and use a chi-square test to examine if there are significant differences in the distribution of freedom to make life choices (high, moderate, low) across these regions. (Might be a bit hard to categorize countries, maybe some mapping scheme??)
+
+Ideas for future:
+- Moderation Analysis:
+    - Explore whether the relationship between Life Ladder and Life Expectancy varies depending on levels of Social Support, Freedom to make life choices, or other moderators
+    - Use the correlation matrix and visualizations to see which features to include
