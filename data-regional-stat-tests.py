@@ -15,7 +15,6 @@ def plot_boxplot(data, dependent_variable):
     plt.xticks(rotation=50)
     plt.savefig(f'visualizations/regional/boxplots/boxploy_regional_{dependent_variable}_stat_test.png')
 
-
 def perform_regional_test(data, dependent_variable):
     data_grouped = data.groupby(["Continent", "Year"]).mean(numeric_only=True).reset_index()
 
