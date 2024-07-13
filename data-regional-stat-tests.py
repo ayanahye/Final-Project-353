@@ -10,11 +10,13 @@ data_grouped = data.groupby(["Continent", "Year"]).mean(numeric_only=True).reset
 life_expect_continents = data_grouped[["Continent", "Year", "Life Expectancy At Birth"]]
 
 #print(data_grouped.to_string())
-print(life_expect_continents.to_string())
+# print(life_expect_continents.to_string())
 
 for continent in life_expect_continents["Continent"].unique():
     p = stats.normaltest(life_expect_continents[life_expect_continents["Continent"] == continent]["Life Expectancy At Birth"]).pvalue
-    print(f'p value for {continent} is: {p}')
+    print(f'Normal Test P-value for {continent} is: {p}\n')
+
+# All P-values > 0.05, fail to reject H0, all samples are normally distributed
 
 grouped_data_values = [life_expect_continents[life_expect_continents["Continent"] == continent]["Life Expectancy At Birth"]
                        for continent in life_expect_continents["Continent"].unique()]
@@ -28,19 +30,19 @@ oceania = life_expect_continents[life_expect_continents["Continent"] == "Oceania
 s_america = life_expect_continents[life_expect_continents["Continent"] == "South America"]["Life Expectancy At Birth"]
 
 p = stats.levene(africa, asia, europe, n_america, oceania, s_america).pvalue
-
-print(f"levene test p {p}")
+# P-value smaller than 0.05, reject H0 and conclude that all samples have different variances
+print(f"Levene Test P-value {p}")
 
 # so groups are normal but variances are not equal, proceed with Welch's ANOVA test
 # seems like a good fit according to: https://scales.arabpsychology.com/stats/how-to-perform-welchs-anova-in-python-step-by-step/
 
 # https://pingouin-stats.org/build/html/generated/pingouin.welch_anova.html
 aov = pg.welch_anova(dv="Life Expectancy At Birth", between="Continent", data=life_expect_continents)
-print(aov)
+print(f'Welch\'s ANOVA Analysis: {aov}')
 
 # p value is very small: 5.150693e-38 so there is significant difference in life expectancy across continents
 # we reject H0 that all continent life expctenacy means are equal
-print(f"P value for Welch's ANOVA {aov['p-unc']}")
+print(f"P-value for Welch's ANOVA {aov['p-unc']}")
 
 # post hoc can do Games-Howell
 # source: https://statisticsbyjim.com/anova/welchs-anova-compared-to-classic-one-way-anova/
