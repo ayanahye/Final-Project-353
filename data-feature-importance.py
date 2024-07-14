@@ -9,7 +9,7 @@ from sklearn.preprocessing import MinMaxScaler
 import seaborn as sns
 from sklearn.pipeline import make_pipeline
 
-data = pd.read_csv("merged_data_imputed.csv")
+data = pd.read_csv("data-files/merged_data_imputed.csv")
 print(data.head(20))
 
 # Calculate Correlation Matrix

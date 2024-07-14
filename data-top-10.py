@@ -4,7 +4,7 @@ from os import listdir
 import matplotlib.pyplot as plt
 from os.path import join, isfile
 
-data = pd.read_csv('merged_data_imputed.csv')
+data = pd.read_csv("data-files/merged_data_imputed.csv")
 
 def top_ranking_countries(year):
 

@@ -2,8 +2,8 @@ import pandas as pd
 import numpy as np
 from sklearn.ensemble import RandomForestRegressor
 
-merged_data = pd.read_csv("merged_data.csv", na_values='')
-continent_data = pd.read_csv("countries_by_continents.csv")
+merged_data = pd.read_csv("data-files/merged_data.csv", na_values='')
+continent_data = pd.read_csv("data-files/countries_by_continents.csv")
 
 all_countries = merged_data['Country Name'].unique()
 all_years = np.arange(2006, 2023)
@@ -90,4 +90,4 @@ merged_data_imputed = merged_data_imputed[merged_data_imputed['Country Name'] !=
 merged_data_imputed = merged_data_imputed[merged_data_imputed['Country Name'] != 'Suriname']
 merged_data_imputed = merged_data_imputed[merged_data_imputed['Country Name'] != 'Belize']
 
-merged_data_imputed.to_csv("merged_data_imputed.csv", index=False)
+merged_data_imputed.to_csv("data-files/merged_data_imputed.csv", index=False)

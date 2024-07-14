@@ -1,7 +1,7 @@
 import pandas as pd
 import numpy as np
 
-data = pd.read_csv('merged_data_imputed.csv')
+data = pd.read_csv("data-files/merged_data_imputed.csv")
 
 features = data.loc[:, (data.columns != 'Country Name') & (data.columns != 'Year') & (data.columns != 'Continent')].columns
 

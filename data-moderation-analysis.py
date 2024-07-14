@@ -3,7 +3,7 @@
 import pandas as pd
 import statsmodels.api as sm
 import matplotlib.pyplot as plt
-data = pd.read_csv("merged_data_imputed.csv")
+data = pd.read_csv("data-files/merged_data_imputed.csv")
 '''
 Moderation analysis is used to examine if the effect of an independent variable on the dependent variable is the same across different levels of another independent variable (moderator). In other words, it is used to examine whether the moderator will change the strength of the relationship between the independent and dependent variables.
 

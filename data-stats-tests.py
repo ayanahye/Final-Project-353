@@ -3,7 +3,7 @@ from scipy import stats
 import matplotlib.pyplot as plt
 import numpy as np
 
-data = pd.read_csv("merged_data_imputed.csv")
+data = pd.read_csv("data-files/merged_data_imputed.csv")
 print(data.head(20))
 
 neg_affect_life_exp = data[["Negative Affect", "Life Expectancy At Birth"]]
@@ -78,7 +78,7 @@ print('\n')
 
 # Only conducting the test for the year 2022 since that is the latest data we have, but for any year, the p-value is significant and always < 0.05 as expected
 
-data = pd.read_csv('merged_data_imputed.csv')
+data = pd.read_csv("data-files/merged_data_imputed.csv")
 data = data[data['Year'] == 2006]
 data = data[['Country Name', 'Life Ladder', 'Social Support']]
 
@@ -103,7 +103,7 @@ print(f'Chi Square Expected Frequency: {chi2.expected_freq}\n')
 
 # Again, only testing for the most recent year: 2022
 
-data = pd.read_csv('merged_data_imputed.csv')
+data = pd.read_csv("data-files/merged_data_imputed.csv")
 data = data[data['Year'] == 2022]
 data = data[['Country Name', 'Life Expectancy At Birth', 'Perceptions Of Corruption']]
 

@@ -2,7 +2,7 @@ import pandas as pd
 import numpy as np
 import matplotlib.pyplot as plt
 
-data = pd.read_csv('merged_data_imputed.csv', parse_dates=['Year'])
+data = pd.read_csv('data-files/merged_data_imputed.csv', parse_dates=['Year'])
 
 # Plot a feature for a country
 def plot_country(country_name, feature_name):

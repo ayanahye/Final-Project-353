@@ -1,7 +1,7 @@
 import pandas as pd
 
-happiness_data = pd.read_csv("happiness.csv", na_values=' ')
-life_expectancy_data = pd.read_csv("life-expectancy.csv", skiprows=3, na_values=' ')
+happiness_data = pd.read_csv("data-files/happiness.csv", na_values=' ')
+life_expectancy_data = pd.read_csv("data-files/life-expectancy.csv", skiprows=3, na_values=' ')
 
 happiness_data['year'] = happiness_data['year'].astype(int)
 
@@ -28,6 +28,6 @@ merged_data = merged_data.drop(['Country Code', 'Indicator Name', 'Indicator Cod
 merged_data.columns = [column.title() for column in merged_data.columns]
 
 print(merged_data)
-merged_data.to_csv("merged_data.csv", index=False)
+merged_data.to_csv("data-files/merged_data.csv", index=False)
 print("Finished data processing step!")
 # 1947

@@ -4,7 +4,7 @@ import pingouin as pg
 import seaborn as sns
 import matplotlib.pyplot as plt
 
-data = pd.read_csv("merged_data_imputed.csv")
+data = pd.read_csv("data-files/merged_data_imputed.csv")
 # differences in life expectancy across continents (17 observations in each group)
 
 
