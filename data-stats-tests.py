@@ -133,3 +133,4 @@ print(f"Kruskal-Wallis P-value to determine whether Mean Life Expectancy is diff
 
 # P-value is really small (9.217059352733059e-06) so we can successfully reject H0 and conclude that there is a significant difference in the median life expectancy at birth across the different levels of corruption.
 
+
