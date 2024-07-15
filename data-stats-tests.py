@@ -60,6 +60,7 @@ def create_bar_plots(data, column, extent, title, xlabel, ylabel, filename):
     plt.ylabel(ylabel)
     plt.legend()
     plt.savefig(filename) 
+    plt.close()
 
 
 create_bar_plots(neg_affect_life_exp, 'Life Expectancy At Birth', 'Negative Affect Extent',
@@ -129,8 +130,47 @@ high_corruption_life_exp = high_corruption['Life Expectancy At Birth']
 
 h_stat, p_value = stats.kruskal(low_corruption_life_exp, med_corruption_life_exp, high_corruption_life_exp)
 
-print(f"Kruskal-Wallis P-value to determine whether Mean Life Expectancy is different in countries with low, medium, and high Corruption: {p_value}")
+print(f"Kruskal-Wallis P-value to determine whether Median Life Expectancy is different in countries with low, medium, and high Corruption: {p_value}\n")
 
 # P-value is really small (9.217059352733059e-06) so we can successfully reject H0 and conclude that there is a significant difference in the median life expectancy at birth across the different levels of corruption.
 
 
+# Does the categorical variable continent affect the categorical response variable of whether or not a country is above or below the median global life expectancy (72.81 years)?
+
+data = data = pd.read_csv("data-files/merged_data_imputed.csv")
+features = data.loc[:, (data.columns != 'Country Name') & (data.columns != 'Year') & (data.columns != 'Continent')].columns.to_list()
+
+data_LE = data[['Year', 'Life Expectancy At Birth', 'Continent']]
+data_LE = data_LE[data_LE["Year"] == 2022]
+
+data_LE["Above Median"] = data_LE['Life Expectancy At Birth'].apply(lambda x: 'Above' if x >= 72.81 else 'Below')
+contingency = pd.crosstab(data_LE['Continent'], data_LE['Above Median'])
+print('Life Expectancy Score\n')
+print(f'{contingency}\n')
+
+# Above Median   Above  Below
+# Continent                  
+# Africa             4     39
+# Asia              16     14
+# Europe            38      3
+# North America      8      5
+# Oceania            2      0
+# South America      7      2
+
+chi2 = stats.chi2_contingency(contingency)
+print(f'Chi-square P-value to determine if the Continent affects whether the Life Expectancy of a country is above or below median: {chi2.pvalue}\n')
+# P-value: 2.3988294461371302e-12 < 0.05 => reject H0. Conclude that the categorical variable continent affects the categorical response variable of whether or not a country is above or below the median global life expectancy.
+
+
+# Does the categorical variable continent affect the categorical response variable of whether or not a country is above or below the median global happiness index (5.54 points)?
+
+data_LL = data[['Year', 'Life Ladder', 'Continent']]
+data_LL = data_LL[data_LL["Year"] == 2022]
+
+data_LE["Above Median"] = data_LL['Life Ladder'].apply(lambda x: 'Above' if x >= 5.54 else 'Below')
+contingency = pd.crosstab(data_LL['Continent'], data_LE['Above Median'])
+print('Life Ladder Score\n')
+print(f'{contingency}\n')
+chi2 = stats.chi2_contingency(contingency)
+print(f'Chi-square P-value to determine if the Continent affects whether the Life Ladder score of a country is above or below median: {chi2.pvalue}\n')
+# P-value: 5.630043483949672e-13 < 0.05 => reject H0. Conclude that the categorical variable continent affects the categorical response variable of whether or not a country is above or below the median happiness index.

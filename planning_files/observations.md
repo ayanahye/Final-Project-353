@@ -19,8 +19,14 @@ There is a future problem that the behavior of Series.idxmin or Series.idxmax wi
 - Change column name country to country name
 
 ## Stats Test results:
-* The median Life Expectancy At Birth differs significantly across countries with different levels of Perceptions of Corruption. (Kruskal Wallis test)
-    * Results: P-value is really small (9.217059352733059e-06) so we can successfully reject H0 and conclude that there is a significant difference in the median life expectancy at birth across the different levels of corruption.
+* Test: The median Life Expectancy At Birth differs significantly across countries with different levels of Perceptions of Corruption. (Kruskal Wallis test)
+    * Result: P-value is really small (9.217059352733059e-06) so we can successfully reject H0 and conclude that there is a significant difference in the median life expectancy at birth across the different levels of corruption.
 
-* Do countries with high/medium/low perceived social support have different life ladder ratings on average? (Chi Square Test)
-    * Since p-value = 9.0337804366599e-21 < 0.05, there's some common cause that affects both Life Ladder score (happiness level) and Social Support score. Shows that countries with different levels of perceived social support (high, medium, low) have different life ladder ratings on average. However, can't determine the direction of the association.
+* Test: Do countries with high/medium/low perceived social support have different life ladder ratings on average? (Chi Square Test)
+    * Result: Since p-value = 9.0337804366599e-21 < 0.05, there's some common cause that affects both Life Ladder score (happiness level) and Social Support score. Shows that countries with different levels of perceived social support (high, medium, low) have different life ladder ratings on average. However, can't determine the direction of the association.
+
+* Test: Does the categorical variable continent affect the categorical response variable of whether or not a country is above or below the median global life expectancy? (72.81 years)
+    * Result: P-value: 2.3988294461371302e-12 < 0.05 => reject H0. Conclude that the categorical variable continent affects the categorical response variable of whether or not a country is above or below the median global life expectancy.
+
+* Test: Does the categorical variable continent affect the categorical response variable of whether or not a country is above or below the median global happiness index (5.54 points)?
+    * Result: P-value: 5.630043483949672e-13 < 0.05 => reject H0. Conclude that the categorical variable continent affects the categorical response variable of whether or not a country is above or below the median happiness index.
